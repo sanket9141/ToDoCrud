@@ -50,7 +50,6 @@ class AddTaskActivity:AppCompatActivity() {
         if (taskType.equals("Edit")) {
             val taskTitle = intent.getStringExtra("taskTitle")
             val updateDate = intent.getStringExtra("taskDate")
-            val updatedesc = intent.getStringExtra("taskDescription")
             taskkId = intent.getIntExtra("taskId", -1)
 
             binding.addbutton.setText("Update Task")
@@ -73,17 +72,25 @@ class AddTaskActivity:AppCompatActivity() {
                     updatedTask.id = taskkId
 
                     viewmodel.updateTask(updatedTask)
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+
                     Toast.makeText(this, "Task Updated", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 if (taskTitle.isNotEmpty() && taskDate.isNotEmpty()) {
 
                     viewmodel.addTask(ToDoEntity(taskTitle, taskDate))
+
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+
                     Toast.makeText(this, "Task Added", Toast.LENGTH_SHORT).show()
+
+                }
+                else{
+                    Toast.makeText(this,"Fields cannot be Empty.!!!",Toast.LENGTH_SHORT).show()
                 }
             }
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-            finish()
+
         }
     }
 }

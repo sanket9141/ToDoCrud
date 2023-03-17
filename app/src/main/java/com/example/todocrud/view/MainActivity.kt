@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), ClickInterface, DeleteInterface {
         binding.newbutton.setOnClickListener{
             val intent = Intent(this@MainActivity, AddTaskActivity::class.java)
             startActivity(intent)
-            this.finish()
+//            this.finish()
         }
     }
 
@@ -60,6 +60,6 @@ class MainActivity : AppCompatActivity(), ClickInterface, DeleteInterface {
         intent.putExtra("taskDate", note.date)
         intent.putExtra("taskId",note.id)
         startActivity(intent)
-        finish()
+//        finish()
     }
 }
